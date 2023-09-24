@@ -752,8 +752,15 @@ function limiter_ion_Z(input){
 }
 
 function limiter_ion_charge(input){
-	if (input.value > document.getElementById('ion_Z').value) input.value = document.getElementById('ion_Z').value;
-	if (input.value < document.getElementById('ion_Z').value-3) input.value = document.getElementById('ion_Z').value-3;
+	if (input.value >= document.getElementById('ion_Z').value){
+		input.value = document.getElementById('ion_Z').value;
+		document.getElementById('lifetimeElectronStripping_check').disabled = true;
+	}else if (input.value < document.getElementById('ion_Z').value-3){
+		input.value = document.getElementById('ion_Z').value-3;
+		document.getElementById('lifetimeElectronStripping_check').disabled = false;
+	}else{
+		document.getElementById('lifetimeElectronStripping_check').disabled = false;
+	}
 }
 
 function limiter_emittance(input){
