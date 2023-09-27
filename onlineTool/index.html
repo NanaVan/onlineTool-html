@@ -1125,8 +1125,8 @@ function LifeTimeEL(){
 			let Z_t = Number(document.getElementById(`Gas${i}_Z_t`).value);
 			let quantity = Number(document.getElementById(`Gas${i}_quantity_t`).value);
 			var rho = gas_rho * quantity; // [m^-3]
-			var lambda_ec_temp = 3.5 * Math.pow(10, -18+Math.pow(0.71 * Math.log(ion_charge), 1.5)) * 1e-4 * Math.pow(q_bar, -2) * Z_t * (1 - Math.exp(-137*beta/Math.pow(Z_t, 0.67))) * Math.pow(Math.pow(gamma, 2) - 1, -1/2) * Math.pow(ion_charge/q_bar, b) * rho * beta * c; // [s^-1]
-			lambda_ec += lambda_ec_temp;
+			var lambda_el_temp = 3.5 * Math.pow(10, -18+Math.pow(0.71 * Math.log(ion_charge), 1.5)) * 1e-4 * Math.pow(q_bar, -2) * Z_t * (1 - Math.exp(-137*beta/Math.pow(Z_t, 0.67))) * Math.pow(Math.pow(gamma, 2) - 1, -1/2) * Math.pow(ion_charge/q_bar, b) * rho * beta * c; // [s^-1]
+			lambda_el += lambda_el_temp;
 		}	
 	}else{
 		document.getElementById('EL_method').innerHTML = "Habs Method";
@@ -1149,7 +1149,7 @@ function LifeTimeEL(){
 			}else{
 				var lambda_el_temp = 0;
 			}
-		lambda_el += lambda_el_temp;
+			lambda_el += lambda_el_temp;
 		}
 	}
 	var tau_el = 1/lambda_el;
