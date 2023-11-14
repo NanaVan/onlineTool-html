@@ -1,6 +1,12 @@
 <!DOCTYOE html>
 <html>
 
+<head>
+	<meta charset='utf-8'>
+	<title>Online Tool</title>
+</head>
+
+
 <style>
  body{
    font-family: Consolas, Menlo, monospace;
@@ -197,13 +203,18 @@
 				<td style='text-align:left'></td>
 			</tr>
 			<tr>
+				<td style='text-align:right'>Ion mass number:</td>
+				<td><input type='text' id='ion_A' size='10' value='56' enterkeyhint='done' onchange='limiter_ion_A(this);' /></td>
+				<td style='text-align:left'></td>
+			</tr>
+			<tr>
 				<td style='text-align:right'>Ion charge:</td>
 				<td><input type='text' id='ion_charge' size='10' value='26' enterkeyhint='done' onchange='limiter_ion_charge(this);' /></td>
 				<td style='text-align:left'></td>
 			</tr>
 			<tr>
 				<td style='text-align:right'>Ion mass:</td>
-				<td><input type='text' id='ion_mass' size='10' value='55.92071' enterkeyhint='done' /></td>
+				<td><input type='text' id='ion_mass' size='10' value='55.92071' enterkeyhint='done' readonly/></td>
 				<td style='text-align:left'>[amu]</td>
 			</tr>
 			<tr>
@@ -523,9 +534,8 @@
 </div>
 
 </body>
-
+<script src='./script/sql-wasm.js'></script>
 <script>
-
 function toSci(xx, digi){
   //return xx.toExponential(digi).replace(/e\+?/, ' x 10^');
   return xx.toExponential(digi);
@@ -736,6 +746,29 @@ document.getElementById('ion_charge').addEventListener('keypress',
   }, false
 );
 
+async function getIonA(){
+	const [SQL, buf] = await Promise.all([
+		initSqlJs({locateFile: file=> `./script/${file}`}),
+		fetch("./script/ionic_data.sqlite").then(res => res.arrayBuffer())
+	]);		
+	const db = new SQL.Database(new Uint8Array(buf));
+	const stmt = db.prepare("SELECT min(A), max(A), min(MASS) FROM IONICDATA WHERE Z=$zval AND ISOMERIC=0");
+	let result = stmt.get({$zval: document.getElementById('ion_Z').value});
+	//console.log(result);
+	if (document.getElementById('ion_A').value > result[1] || document.getElementById('ion_A').value < result[0]) {
+		document.getElementById('ion_A').value = result[0];
+		document.getElementById('ion_mass').value = result[2];
+	}else{
+		const stmt = db.prepare("SELECT MASS FROM IONICDATA WHERE A=$aval AND Q=$qval AND Z=$zval AND ISOMERIC=0");
+		let result = stmt.get({'$aval': document.getElementById('ion_A').value, '$qval': document.getElementById('ion_charge').value, '$zval': document.getElementById('ion_Z').value});
+		document.getElementById('ion_mass').value = result;
+	}
+}
+
+function limiter_ion_A(input){
+	getIonA();
+}
+
 const elements = ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Bd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds'];
 
 function limiter_ion_element(input){
@@ -747,6 +780,7 @@ function limiter_ion_element(input){
 		document.getElementById('ion_Z').value = String(index + 1);
 	}
 	document.getElementById('ion_charge').value = document.getElementById('ion_Z').value;
+	getIonA();
 	document.getElementById('lifetimeElectronStripping_check').disabled = true;
 }
 
@@ -754,6 +788,7 @@ function limiter_ion_Z(input){
 	if (input.value > 110 || input.value < 4) input.value = '26';
 	document.getElementById('ion_element').value = elements[Number(input.value)-1];
 	document.getElementById('ion_charge').value = input.value;
+	getIonA();
 	document.getElementById('lifetimeElectronStripping_check').disabled = true;
 }
 
@@ -767,6 +802,7 @@ function limiter_ion_charge(input){
 	}else{
 		document.getElementById('lifetimeElectronStripping_check').disabled = false;
 	}
+	getIonA();
 }
 
 function limiter_emittance(input){
@@ -791,12 +827,14 @@ function SettingInformationStatus(status){
 	if (status){
 		document.getElementById('ion_element').disabled = true;
 		document.getElementById('ion_Z').disabled = true;
+		document.getElementById('ion_A').disabled = true;
 		document.getElementById('ion_charge').disabled = true;
 		document.getElementById('ion_mass').disabled = true;
 		document.getElementById('ion_gamma').disabled = true;
 	}else{
 		document.getElementById('ion_element').disabled = false;
 		document.getElementById('ion_Z').disabled = false;
+		document.getElementById('ion_A').disabled = false;
 		document.getElementById('ion_charge').disabled = false;
 		document.getElementById('ion_mass').disabled = false;
 		document.getElementById('ion_gamma').disabled = false;
