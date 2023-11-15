@@ -623,10 +623,10 @@ document.getElementById('SBv').addEventListener('keypress',
 );
 
 function HarmCalc(){
-	let velocity = document.getElementById('Iv').value;
-	let lenOrbit = document.getElementById('OL').value;
-	let cenFreq = document.getElementById('cenFreq').value;
-	let span = document.getElementById('span').value;
+	let velocity = document.getElementById('Iv').value; // cm/ns
+	let lenOrbit = document.getElementById('OL').value; // m
+	let cenFreq = document.getElementById('cenFreq').value; // MHz
+	let span = document.getElementById('span').value; //kHz
 
 	var frequency = velocity / lenOrbit * 1e4; // kHz
 	document.getElementById('result_rev_freq').innerHTML = '<span style="color:darkorange; font-family:Roboto;">' + (frequency).toFixed(5) + '</span>';
@@ -641,7 +641,7 @@ function HarmCalc(){
 		var harmTBody = document.createElement('tbody');
 		for (var i=0; i<rows; i++){
 			var row = document.createElement('tr');
-			var harmLabel = new Array(harm_start+i-1, ((harm_start+i-1)*frequency-cenFreq*1e3).toFixed(6), ((harm_start+i-1)*frequency*1e-3).toFixed(9));
+			var harmLabel = new Array(harm_start+i, ((harm_start+i)*frequency-cenFreq*1e3).toFixed(6), ((harm_start+i)*frequency*1e-3).toFixed(9));
 			for (let j=0; j<cols; j++) {
 				var cell = document.createElement('td');
 				var cellText = document.createTextNode(harmLabel[j]);
@@ -650,6 +650,17 @@ function HarmCalc(){
 			}
 			harmTBody.appendChild(row);
 		}
+	}else{
+		var harmTBody = document.createElement('tbody');
+		var row = document.createElement('tr')
+		var harmLabel = new Array("", "", "");
+		for (let j=0; j<cols; j++) {
+			var cell = document.createElement('td');
+			var cellText = document.createTextNode(harmLabel[j]);
+			cell.appendChild(cellText);
+			row.appendChild(cell);
+		}
+		harmTBody.appendChild(row);
 	}
 	var old_tbody = document.getElementById('old_tbody');
 	old_tbody.parentNode.replaceChild(harmTBody, old_tbody);
