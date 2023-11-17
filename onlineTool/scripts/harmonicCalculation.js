@@ -1,15 +1,9 @@
-async function initialHarm_calc(){
-	await initialIon_info_dynamic();
-	harmCalc();
-}
-
 function harmCalc(){
-	let velocity = document.getElementById('ion_velocity').value; // [cm/ns]
 	let lenOrbit = document.getElementById('length_orbit').value; // [m]
 	let cenFreq = document.getElementById('center_frequency').value; // [MHz]
 	let span = document.getElementById('span').value; // [kHz]
 
-	var frequency = velocity / lenOrbit * 1e4; // [kHz]
+	var frequency = window.velocity / lenOrbit * 1e4; // [kHz]
 	document.getElementById('result_rev_freq').innerHTML = '<span style="color:darkorange; font-family:Roboto;">' + (frequency).toFixed(5) + '</span>';
 	document.getElementById('result_rev_time').innerHTML = '<span style="color:darkorange; font-family:Roboto;">' + (1e6/frequency).toFixed(6) + '</span>';
 	var harm_start = Math.ceil((cenFreq*1e3-span/2)/frequency);

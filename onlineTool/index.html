@@ -267,13 +267,334 @@
   	</tbody>
 </table>
 
+<h1 align="center">Storage Lifetime Estimation</h1>
+
+<div>
+	<h2 align='center'>Ring Mode Information</h2>
+	<table id='ringModeTable' align='center'>
+		<tr>
+			<td style='text-align:center' colspan='3'><b>Internal Target Mode</b></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Vertical acceptance A<sub>ν</sub></td>
+			<td><input type='text' id='interTG_A_nu' size='10' value='75' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[πmm mrad]</td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Average β function &#10092;β<sub>y</sub>&#10093;:</td>
+			<td><input type='text' id='interTG_beta' size='10' value='7.90744811' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[m]</td>
+		</tr>
+		<tr>
+			<td style='text-align:center' colspan='3'><b>Isochronous Mode</b></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Vertical acceptance A<sub>ν</sub>:</td>
+			<td><input type='text' id='isochronous_A_nu' size='10' value='20' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[πmm mrad]</td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Average β function &#10092;β<sub>y</sub>&#10093;:</td>
+			<td><input type='text' id='isochronous_beta' size='10' value='7.4971677' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[m]</td>
+		</tr>
+		<tr>
+			<td style='text-align:center' colspan='3'><b>Normal Mode</b></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Vertical acceptance A<sub>ν</sub></td>
+			<td><input type='text' id='normal_A_nu' size='10' value='80' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[πmm mrad]</td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Average β function &#10092;β<sub>y</sub>&#10093;:</td>
+			<td><input type='text' id='normal_beta' size='10' value='7.9073749' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[m]</td>
+		</tr>
+	</table>
+</div>
+<div>
+	<h2 align='center'>Gas Informtion</h2>
+	<table id='gasTable' align='center'>
+		<tr>
+			<td style='text-align:left' colspan='2'><b>Total</b></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Gas pressure:</td>
+			<td><input type='text' id='gas_pressure' size='10' value='1e-11' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[mbar]</td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Gas temperture:</td>
+			<td><input type='text' id='gas_temperture' size='10' value='20' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[&#8451;]</td>
+		</tr>
+		<tr>
+			<td style='text-align:left' colspan='2'><b>H</b></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Charge of Gas Z<sub>t</sub>:</td>
+			<td><input type='text' id='Gas0_Z_t' size=10 value='1' enterkeyhint='done' /></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Quantity of Gas:</td>
+			<td><input type='text' id='Gas0_quantity_t' size=10 value='0.827379' eterkeyhint='done' /></td>
+		</tr>
+		<tr>
+			<td style='text-align:left' colspan='2'><b>C</b></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Charge of Gas Z<sub>t</sub>:</td>
+			<td><input type='text' id='Gas1_Z_t' size=10 value='6' enterkeyhint='done' /></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Quantity of Gas:</td>
+			<td><input type='text' id='Gas1_quantity_t' size=10 value='0.043096' eterkeyhint='done' /></td>
+		</tr>
+		<tr>
+			<td style='text-align:left' colspan='2'><b>N</b></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Charge of Gas Z<sub>t</sub>:</td>
+			<td><input type='text' id='Gas2_Z_t' size=10 value='7' enterkeyhint='done' /></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Quantity of Gas:</td>
+			<td><input type='text' id='Gas2_quantity_t' size=10 value='0.081668' eterkeyhint='done' /></td>
+		</tr>
+		<tr>
+			<td style='text-align:left' colspan='2'><b>O</b></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Charge of Gas Z<sub>t</sub>:</td>
+			<td><input type='text' id='Gas3_Z_t' size=10 value='8' enterkeyhint='done' /></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Quantity of Gas:</td>
+			<td><input type='text' id='Gas3_quantity_t' size=10 value='0.047371' eterkeyhint='done' /></td>
+		</tr>
+		<tr>
+			<td style='text-align:left' colspan='2'><b>He</b></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Charge of Gas Z<sub>t</sub>:</td>
+			<td><input type='text' id='Gas4_Z_t' size=10 value='2' enterkeyhint='done' /></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Quantity of Gas:</td>
+			<td><input type='text' id='Gas4_quantity_t' size=10 value='3.75e-5' eterkeyhint='done' /></td>
+		</tr>
+		<tr>
+			<td style='text-align:left' colspan='2'><b>Ar</b></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Charge of Gas Z<sub>t</sub>:</td>
+			<td><input type='text' id='Gas5_Z_t' size=10 value='18' enterkeyhint='done' /></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Quantity of Gas:</td>
+			<td><input type='text' id='Gas5_quantity_t' size=10 value='9.25e-6' eterkeyhint='done' /></td>
+		</tr>
+	</table>
+</div>
+
+<div>
+<h2 align='center'>Storage Life Estimation Result</h2>
+<table id='lifeTable' align='center'>
+	<tr>
+		<td><input type='checkbox' id='lifetimeREC_check' onclick='selectREC(this)'/>
+	  		<label for='lifetimeREC_check'>EC on</label>
+		</td>
+		<td>
+			<tr>
+				<td style="text-align:right">E-beam vertical temperture:</td>
+	    		<td><input type="text" id="T_v" size="10" value="1" enterkeyhint="done" /></td>
+				<td style="text-align:left">[eV]</td>
+	  		</tr>
+	  		<tr>
+				<td style="text-align:right">E-beam current:</td>
+	    		<td><input type="text" id="I_e" size="10" value="0.2" enterkeyhint="done" /></td>
+				<td style="text-align:left">[A]</td>
+	  		</tr>
+	  		<tr>
+				<td style="text-align:right">E-beam radius:</td>
+	    		<td><input type="text" id="r_0" size="10" value="0.02" enterkeyhint="done" /></td>
+				<td style="text-align:left">[m]</td>
+	  		</tr>
+	  		<tr>
+				<td style="text-align:right">E-beam voltage (without cali.):</td>
+				<td style="text-align:left" id='U_e'><span style="color:darkorange; font-family:Roboto;">64.031</span></td>
+				<td style="text-align:left">[kV]</td>
+	  		</tr>
+	  		<tr>
+				<td style="text-align:right">Length of ECooling:</td>
+	    		<td><input type="text" id="len_cool" size="10" value="3.4" enterkeyhint="done" /></td>
+				<td style="text-align:left">[m]</td>
+	  		</tr>
+	  		<tr>
+				<td style="text-align:right">Length of storage Ring:</td>
+	    		<td><input type="text" id="len_C" size="10" value="128.8" enterkeyhint="done" /></td>
+				<td style="text-align:left">[m]</td>
+	  		</tr>
+		</td>
+		<td>
+	  		<tr>
+				<td style="text-align:right">τ<sub>rec</sub></td>
+				<td style="text-align:left" id='result_lifetime_rec'></td>
+				<td style="text-align:left">[s]</td>
+	  		</tr>
+		</td>
+  	</tr>
+  	<tr>
+		<td><input type='checkbox' id='lifetimeScattering_check' onclick='selectES(this)'/>
+	  		<label for='lifetimeScattering_check'>Elastic Scattering</label>
+		</td>
+		<td>
+	  		<tr>
+				<td style="text-align:right">Ring mode:</td>
+				<td><select id='selectMode'>
+						<option value='inter_target'>internal target</option>
+						<option value='isochronous'>isochronous</option>
+						<option value='normal'>normal</option>
+						</select>
+				</td>
+	  		</tr>
+	  		<tr>
+				<td style="text-align:right">Emittance:</td>
+				<td><input type="text" id="emittance" size="10" value="6" enterkeyhint="done" onchange='limiter_emittance(this);' /></td>
+				<td style="text-align:left">[πmm mrad]</td>
+	  		</tr>
+		</td>
+		<td>
+	  		<tr>
+				<td style="text-align:right">τ<sub>ss</sub></td>
+				<td style="text-align:left" id='result_lifetime_ss'></td>
+				<td style="text-align:left">[s]</td>
+	  		</tr>
+	  		<tr>
+				<td style="text-align:right">τ<sub>ms</sub></td>
+				<td style="text-align:left" id='result_lifetime_ms'></td>
+				<td style="text-align:left">[s]</td>
+	  		</tr>
+	  		<tr>
+				<td style="text-align:right">τ<sub>es</sub></td>
+				<td style="text-align:left" id='result_lifetime_es'></td>
+				<td style="text-align:left">[s]</td>
+	  		</tr>
+		</td>
+  	</tr>
+  	<tr>
+		<td>
+	  		<input type='checkbox' id='lifetimeElectronCapture_check' onclick='selectEC(this)' />
+	  		<label for='lifetimeElectronCapture_check'>Electron Capture</label>
+		</td>
+		<td>
+	  		<tr>
+				<td style="text-align:right">τ<sub>ec</sub></td>
+				<td style="text-align:left" id='result_lifetime_ec'></td>
+				<td style="text-align:left">[s]</td>
+	  		</tr>
+		</td>
+		<td>
+	  		<tr>
+				<td></td>
+				<td style="text-align:center; color:gray" id="EC_method"></td>
+	  		</tr>
+		</td>
+  	</tr>
+  	<tr>
+		<td><input type='checkbox' id='lifetimeElectronStripping_check' onclick='selectEL(this)' />
+	  		<label for='lifetimeElectronStripping_check'>Electron Stripping</label>
+		</td>
+		<td>
+	  		<tr>
+				<td style="text-align:right">τ<sub>el</sub></td>
+				<td style="text-align:left" id='result_lifetime_el'></td>
+				<td style="text-align:left">[s]</td>
+	  		</tr>
+		</td>
+		<td>
+	  		<tr>
+				<td></td>
+				<td style="text-align:center; color:gray" id="EL_method"></td>
+	  		</tr>
+		</td>
+  	</tr>
+  	<tr>
+		<td><input type='checkbox' id='lifetimeNuclearReaction_check' onclick='selectNR(this)' />
+	  		<label for='lifetimeNuclearReaction_check'>Nuclear Reaction</label>
+		</td>
+		<td>
+	  		<tr>
+				<td style="text-align:right">τ<sub>nr</sub></td>
+				<td style="text-align:left" id='result_lifetime_nr'></td>
+				<td style="text-align:left">[s]</td>
+	  		</tr>
+		</td>
+  	</tr>
+  	<tr>
+		<td style="text-align:center">τ<sub>total</sub></td>
+		<td style="text-align:left" id='result_lifetime_total_s'></td>
+		<td style="text-align:left">[s]</td>
+  	</tr>
+  	<tr>
+    	<td></td>
+		<td style="text-align:left" id='result_lifetime_total_min'></td>
+		<td style="text-align:left">[min]</td>
+  	</tr>
+  	<tr>
+    	<td></td>
+		<td style="text-align:left" id='result_lifetime_total_hour'></td>
+		<td style="text-align:left">[h]</td>
+  	</tr>
+  	<tr>
+		<td style="text-align:right">REC</td>
+  		<td style="text-align:left" id='ratio_lifetime_REC'></td>
+		<td style="text-align:left">%</td>
+  	</tr>
+  	<tr>
+		<td style="text-align:right">ES</td>
+  		<td style="text-align:left" id='ratio_lifetime_ES'></td>
+		<td style="text-align:left">%</td>
+  	</tr>
+  	<tr>
+		<td style="text-align:right">EC</td>
+  		<td style="text-align:left" id='ratio_lifetime_EC'></td>
+		<td style="text-align:left">%</td>
+  	</tr>
+  	<tr>
+		<td style="text-align:right">EL</td>
+  		<td style="text-align:left" id='ratio_lifetime_EL'></td>
+		<td style="text-align:left">%</td>
+  	</tr>
+  	<tr>
+		<td style="text-align:right">NR</td>
+  		<td style="text-align:left" id='ratio_lifetime_NR'></td>
+		<td style="text-align:left">%</td>
+  	</tr>
+</table>
+</div>
+
 
 </body>
+
 <script src='/dist/sql-wasm.js'></script>
 <script src='/scripts/ionNumberEstimation.js'></script>
 <script src='/scripts/ionInformationSetting.js'></script>
 <script src='/scripts/harmonicCalculation.js'></script>
-<script src='/scripts/initial.js'></script>
+<script src='/scripts/storageLifeCalculation.js'></script>
+<script>
+	async function initial(){
+		await initialIon_info_dynamic();
+		LifeTimeREC();
+		LifeTimeES();
+		LifeTimeEC();
+		LifeTimeEL();
+		LifeTimeNR();
+	}
+	initial();
+
+</script>
 
 
 </html>

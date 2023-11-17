@@ -71,11 +71,13 @@ function limiter_ion_charge(input){
 }
 
 // parameter from CODATA 2018
-const speed_c = 299792458 // [m/s] speed of light in vacuum
-const elementary_charge = 1.602176634e-19 // [C] elementary charge
-const me = 5.48579909065e-4 // [u] electron mass in u
-const u2kg = 1.66053906660e-27 // [kg/u] amount of kg per 1 u
-const MeV2u = 1.07354410233e-3 // [u/MeV] amount of u per 1 MeV
+const speed_c = 299792458; // [m/s] speed of light in vacuum
+const elementary_charge = 1.602176634e-19; // [C] elementary charge
+const me = 5.48579909065e-4; // [u] electron mass in u
+const me_kg = 9.1093837015e-31; // [kg] electron mass in kg
+const u2kg = 1.66053906660e-27; // [kg/u] amount of kg per 1 u
+const eV2J = 1.602176634e-19; // [J/eV]
+const MeV2u = 1.07354410233e-3; // [u/MeV] amount of u per 1 MeV
 
 async function initialIon_info_dynamic(){
 	await checkIon();
@@ -83,19 +85,21 @@ async function initialIon_info_dynamic(){
 	var A = Number(document.getElementById('ion_A').value);
 	var Brho = 1; // [Tm]
 	var gamma_beta = Brho / window.ion_mass * Q / speed_c / u2kg * elementary_charge;
-	var beta = gamma_beta / Math.sqrt(1 + Math.pow(gamma_beta, 2));
-	var velocity = beta * speed_c * 1e-7;
-	var gamma = 1 / Math.sqrt(1 - Math.pow(beta, 2));
-	var energy_MeVu = (gamma - 1) / MeV2u;
+	window.beta = gamma_beta / Math.sqrt(1 + Math.pow(gamma_beta, 2));
+	window.velocity = window.beta * speed_c * 1e-7;
+	window.gamma = 1 / Math.sqrt(1 - Math.pow(window.beta, 2));
+	var energy_MeVu = (window.gamma - 1) / MeV2u;
 	var TKE = window.ion_mass * energy_MeVu; 
 	var energy_AMeV = TKE / A;
 	document.getElementById('ion_energy_MeVu').value = energy_MeVu.toFixed(5);
 	document.getElementById('ion_energy_AMeV').value = energy_AMeV.toFixed(5);
 	document.getElementById('ion_totalKineticEnergy').value = TKE.toFixed(5);
 	document.getElementById('ion_Brho').value = Brho;
-	document.getElementById('ion_gamma').value = gamma.toFixed(5);
-	document.getElementById('ion_beta').value = beta.toFixed(5);
-	document.getElementById('ion_velocity').value = velocity.toFixed(5);
+	document.getElementById('ion_gamma').value = window.gamma.toFixed(5);
+	document.getElementById('ion_beta').value = window.beta.toFixed(5);
+	document.getElementById('ion_velocity').value = window.velocity.toFixed(5);
+	harmCalc();
+	calc_U_e();
 } 
 
 
@@ -105,16 +109,18 @@ function change_ion_energy_MeVu(input){
 	var energy_MeVu = Number(input.value);
 	var TKE = window.ion_mass * energy_MeVu;
 	var energy_AMeV = TKE / A;
-	var gamma = 1 + energy_MeVu * MeV2u;
-	var beta = Math.sqrt(1 - 1/Math.pow(gamma,2));
-	var velocity = beta * speed_c * 1e-7;
-	var Brho = gamma * beta * window.ion_mass / Q * speed_c * u2kg / elementary_charge;
+	window.gamma = 1 + energy_MeVu * MeV2u;
+	window.beta = Math.sqrt(1 - 1/Math.pow(window.gamma,2));
+	window.velocity = window.beta * speed_c * 1e-7;
+	var Brho = window.gamma * window.beta * window.ion_mass / Q * speed_c * u2kg / elementary_charge;
 	document.getElementById('ion_energy_AMeV').value = energy_AMeV.toFixed(5);
 	document.getElementById('ion_totalKineticEnergy').value = TKE.toFixed(5);
 	document.getElementById('ion_Brho').value = Brho.toFixed(5);
-	document.getElementById('ion_gamma').value = gamma.toFixed(5);
-	document.getElementById('ion_beta').value = beta.toFixed(5);
-	document.getElementById('ion_velocity').value = velocity.toFixed(5);
+	document.getElementById('ion_gamma').value = window.gamma.toFixed(5);
+	document.getElementById('ion_beta').value = window.beta.toFixed(5);
+	document.getElementById('ion_velocity').value = window.velocity.toFixed(5);
+	harmCalc();
+	calc_U_e();
 }
 
 function change_ion_energy_AMeV(input){
@@ -123,16 +129,18 @@ function change_ion_energy_AMeV(input){
 	var energy_AMeV = Number(input.value);
 	var TKE = A * energy_AMeV;
 	var energy_MeVu = TKE / window.ion_mass;
-	var gamma = 1 + energy_MeVu * MeV2u;
-	var beta = Math.sqrt(1 - 1/Math.pow(gamma,2));
-	var velocity = beta * speed_c * 1e-7;
-	var Brho = gamma * beta * window.ion_mass / Q * speed_c * u2kg / elementary_charge;
+	window.gamma = 1 + energy_MeVu * MeV2u;
+	window.beta = Math.sqrt(1 - 1/Math.pow(window.gamma,2));
+	window.velocity = window.beta * speed_c * 1e-7;
+	var Brho = window.gamma * window.beta * window.ion_mass / Q * speed_c * u2kg / elementary_charge;
 	document.getElementById('ion_energy_MeVu').value = energy_MeVu.toFixed(5);
 	document.getElementById('ion_totalKineticEnergy').value = TKE.toFixed(5);
 	document.getElementById('ion_Brho').value = Brho.toFixed(5);
-	document.getElementById('ion_gamma').value = gamma.toFixed(5);
-	document.getElementById('ion_beta').value = beta.toFixed(5);
-	document.getElementById('ion_velocity').value = velocity.toFixed(5);
+	document.getElementById('ion_gamma').value = window.gamma.toFixed(5);
+	document.getElementById('ion_beta').value = window.beta.toFixed(5);
+	document.getElementById('ion_velocity').value = window.velocity.toFixed(5);
+	harmCalc();
+	calc_U_e();
 }
 
 function change_ion_totalKineticEnergy(input){
@@ -141,16 +149,18 @@ function change_ion_totalKineticEnergy(input){
 	var TKE = Number(input.value);
 	var energy_MeVu = TKE / window.ion_mass;
 	var energy_AMeV = TKE / A;
-	var gamma = 1 + energy_MeVu * MeV2u;
-	var beta = Math.sqrt(1 - 1/Math.pow(gamma,2));
-	var velocity = beta * speed_c * 1e-7;
-	var Brho = gamma * beta * window.ion_mass / Q * speed_c * u2kg / elementary_charge;
+	window.gamma = 1 + energy_MeVu * MeV2u;
+	window.beta = Math.sqrt(1 - 1/Math.pow(window.gamma,2));
+	window.velocity = window.beta * speed_c * 1e-7;
+	var Brho = window.gamma * window.beta * window.ion_mass / Q * speed_c * u2kg / elementary_charge;
 	document.getElementById('ion_energy_MeVu').value = energy_MeVu.toFixed(5);
 	document.getElementById('ion_energy_AMeV').value = energy_AMeV.toFixed(5);
 	document.getElementById('ion_Brho').value = Brho.toFixed(5);
-	document.getElementById('ion_gamma').value = gamma.toFixed(5);
-	document.getElementById('ion_beta').value = beta.toFixed(5);
-	document.getElementById('ion_velocity').value = velocity.toFixed(5);
+	document.getElementById('ion_gamma').value = window.gamma.toFixed(5);
+	document.getElementById('ion_beta').value = window.beta.toFixed(5);
+	document.getElementById('ion_velocity').value = window.velocity.toFixed(5);
+	harmCalc();
+	calc_U_e();
 }
 
 function change_ion_Brho(input){
@@ -158,70 +168,78 @@ function change_ion_Brho(input){
 	var A = Number(document.getElementById('ion_A').value);
 	var Brho = Number(input.value);
 	var gamma_beta = Brho / window.ion_mass * Q / speed_c / u2kg * elementary_charge;
-	var beta = gamma_beta / Math.sqrt(1 + Math.pow(gamma_beta, 2));
-	var velocity = beta * speed_c * 1e-7;
-	var gamma = 1 / Math.sqrt(1 - Math.pow(beta, 2));
-	var energy_MeVu = (gamma - 1) / MeV2u;
+	window.beta = gamma_beta / Math.sqrt(1 + Math.pow(gamma_beta, 2));
+	window.velocity = window.beta * speed_c * 1e-7;
+	window.gamma = 1 / Math.sqrt(1 - Math.pow(window.beta, 2));
+	var energy_MeVu = (window.gamma - 1) / MeV2u;
 	var TKE = window.ion_mass * energy_MeVu; 
 	var energy_AMeV = TKE / A;
 	document.getElementById('ion_energy_MeVu').value = energy_MeVu.toFixed(5);
 	document.getElementById('ion_energy_AMeV').value = energy_AMeV.toFixed(5);
 	document.getElementById('ion_totalKineticEnergy').value = TKE.toFixed(5);
-	document.getElementById('ion_gamma').value = gamma.toFixed(5);
-	document.getElementById('ion_beta').value = beta.toFixed(5);
-	document.getElementById('ion_velocity').value = velocity.toFixed(5);
+	document.getElementById('ion_gamma').value = window.gamma.toFixed(5);
+	document.getElementById('ion_beta').value = window.beta.toFixed(5);
+	document.getElementById('ion_velocity').value = window.velocity.toFixed(5);
+	harmCalc();
+	calc_U_e();
 }
 
 function change_ion_gamma(input){
 	var Q = Number(document.getElementById('ion_charge').value);
 	var A = Number(document.getElementById('ion_A').value);
-	var gamma = Number(input.value);
-	var beta = Math.sqrt(1 - 1/Math.pow(gamma,2));
-	var velocity = beta * speed_c * 1e-7;
-	var Brho = gamma * beta * window.ion_mass / Q * speed_c * u2kg / elementary_charge;
-	var energy_MeVu = (gamma - 1) / MeV2u;
+	window.gamma = Number(input.value);
+	window.beta = Math.sqrt(1 - 1/Math.pow(window.gamma,2));
+	wwindow.velocity = window.beta * speed_c * 1e-7;
+	var Brho = window.gamma * window.beta * window.ion_mass / Q * speed_c * u2kg / elementary_charge;
+	var energy_MeVu = (window.gamma - 1) / MeV2u;
 	var TKE = window.ion_mass * energy_MeVu; 
 	var energy_AMeV = TKE / A;
 	document.getElementById('ion_energy_MeVu').value = energy_MeVu.toFixed(5);
 	document.getElementById('ion_energy_AMeV').value = energy_AMeV.toFixed(5);
 	document.getElementById('ion_totalKineticEnergy').value = TKE.toFixed(5);
 	document.getElementById('ion_Brho').value = Brho.toFixed(5);
-	document.getElementById('ion_beta').value = beta.toFixed(5);
-	document.getElementById('ion_velocity').value = velocity.toFixed(5);
+	document.getElementById('ion_beta').value = window.beta.toFixed(5);
+	document.getElementById('ion_velocity').value = window.velocity.toFixed(5);
+	harmCalc();
+	calc_U_e();
 }
 
 function change_ion_beta(input){
 	var Q = Number(document.getElementById('ion_charge').value);
 	var A = Number(document.getElementById('ion_A').value);
-	var beta = Number(input.value);
-	var gamma = 1 / Math.sqrt(1 - Math.pow(beta, 2));
-	var velocity = beta * speed_c * 1e-7;
-	var Brho = gamma * beta * window.ion_mass / Q * speed_c * u2kg / elementary_charge;
-	var energy_MeVu = (gamma - 1) / MeV2u;
+	window.beta = Number(input.value);
+	window.gamma = 1 / Math.sqrt(1 - Math.pow(window.beta, 2));
+	window.velocity = window.beta * speed_c * 1e-7;
+	var Brho = window.gamma * window.beta * window.ion_mass / Q * speed_c * u2kg / elementary_charge;
+	var energy_MeVu = (window.gamma - 1) / MeV2u;
 	var TKE = window.ion_mass * energy_MeVu; 
 	var energy_AMeV = TKE / A;
 	document.getElementById('ion_energy_MeVu').value = energy_MeVu.toFixed(5);
 	document.getElementById('ion_energy_AMeV').value = energy_AMeV.toFixed(5);
 	document.getElementById('ion_totalKineticEnergy').value = TKE.toFixed(5);
 	document.getElementById('ion_Brho').value = Brho.toFixed(5);
-	document.getElementById('ion_gamma').value = gamma.toFixed(5);
-	document.getElementById('ion_velocity').value = velocity.toFixed(5);
+	document.getElementById('ion_gamma').value = window.gamma.toFixed(5);
+	document.getElementById('ion_velocity').value = window.velocity.toFixed(5);
+	harmCalc();
+	calc_U_e();
 }
 
 function change_ion_velocity(input){
 	var Q = Number(document.getElementById('ion_charge').value);
 	var A = Number(document.getElementById('ion_A').value);
-	var velocity = Number(input.value);
-	var beta = velocity * 1e7 / speed_c;
-	var gamma = 1 / Math.sqrt(1 - Math.pow(beta, 2));
-	var Brho = gamma * beta * window.ion_mass / Q * speed_c * u2kg / elementary_charge;
-	var energy_MeVu = (gamma - 1) / MeV2u;
+	window.velocity = Number(input.value);
+	window.beta = window.velocity * 1e7 / speed_c;
+	window.gamma = 1 / Math.sqrt(1 - Math.pow(window.beta, 2));
+	var Brho = window.gamma * window.beta * window.ion_mass / Q * speed_c * u2kg / elementary_charge;
+	var energy_MeVu = (window.gamma - 1) / MeV2u;
 	var TKE = window.ion_mass * energy_MeVu; 
 	var energy_AMeV = TKE / A;
 	document.getElementById('ion_energy_MeVu').value = energy_MeVu.toFixed(5);
 	document.getElementById('ion_energy_AMeV').value = energy_AMeV.toFixed(5);
 	document.getElementById('ion_totalKineticEnergy').value = TKE.toFixed(5);
 	document.getElementById('ion_Brho').value = Brho.toFixed(5);
-	document.getElementById('ion_gamma').value = gamma.toFixed(5);
-	document.getElementById('ion_beta').value = beta.toFixed(5);
+	document.getElementById('ion_gamma').value = window.gamma.toFixed(5);
+	document.getElementById('ion_beta').value = window.beta.toFixed(5);
+	harmCalc();
+	calc_U_e();
 }

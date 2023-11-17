@@ -1,1 +1,0 @@
-initialHarm_calc();
