@@ -98,7 +98,6 @@ async function initialIon_info_dynamic(){
 	document.getElementById('ion_velocity').value = velocity.toFixed(5);
 } 
 
-initialIon_info_dynamic();
 
 function change_ion_energy_MeVu(input){
 	var Q = Number(document.getElementById('ion_charge').value);

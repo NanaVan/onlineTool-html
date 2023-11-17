@@ -223,15 +223,57 @@
 			</tr>
 			</table>
 		</td>
-
 	</tr>
+</table>
 
- </table>
+<h1 align="center">Harmonic Calculation</h1>
+
+<table id="harmonic_calculation" align="center">
+	<tr>
+		<td style="text-align:right">Length of Orbit:</td>
+		<td><input type="text" id="length_orbit" size="10" value="128.8" enterkeyhint="done" /> </td>
+		<td style="text-align:left">[m]</td>
+  	</tr>
+  	<tr>
+		<td style="text-align:right">Center frequency:</td>
+		<td><input type="text" id="center_frequency" size="10" value="243.5" enterkeyhint="done" /> </td>
+		<td style="text-align:left">[MHz]</td>
+  	</tr>
+  	<tr>
+		<td style="text-align:right">Span:</td>
+		<td><input type="text" id="span" size="10" value="2000" enterkeyhint="done" /> </td>
+		<td style="text-align:left">[kHz]</td>
+  	</tr>
+  	<tr>
+		<td style="text-align:right">Revolution frequency:</td>
+		<td style="text-align:left" id="result_rev_freq"></td>
+		<td style="text-align:left">[kHz]</td>
+  	</tr>
+  	<tr>
+		<td style="text-align:right">Revolution time:</td>
+		<td style="text-align:left" id="result_rev_time"></td>
+		<td style="text-align:left">[ns]</td>
+  	</tr>
+</table>
+<table id="harmResult" align='center'>
+  	<thead>
+  	<tr>
+		<th>&nbsp;harmonic&nbsp;</th>
+		<th>&nbsp;location [kHz]&nbsp;</th>
+		<th>&nbsp;frequency [MHz]&nbsp;</th>
+  	</tr>
+  	</thead>
+  	<tbody id='old_tbody'>
+  	</tbody>
+</table>
+
 
 </body>
 <script src='/dist/sql-wasm.js'></script>
 <script src='/scripts/ionNumberEstimation.js'></script>
 <script src='/scripts/ionInformationSetting.js'></script>
+<script src='/scripts/harmonicCalculation.js'></script>
+<script src='/scripts/initial.js'></script>
 
 
 </html>
