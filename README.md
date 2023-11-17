@@ -1,8 +1,8 @@
 # onlineTool-html
 A html for [online tool](https://online-tool-html.vercel.app/) of beam experiment
-Constant values: CODATA 2018
-Nuclear data: NUBASE2020
-Database: SQLite([SQL.js](https://github.com/sql-js/sql.js))
+* Constant values: CODATA 2018
+* Nuclear data: NUBASE2020
+* Database: SQLite([SQL.js](https://github.com/sql-js/sql.js))
 
 ## Ion Number Estimation
 A small tool for calculating transfer efficiency based on information of the primary beam and the secondary beam.
