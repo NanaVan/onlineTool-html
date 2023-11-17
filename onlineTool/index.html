@@ -586,11 +586,7 @@
 <script>
 	async function initial(){
 		await initialIon_info_dynamic();
-		LifeTimeREC();
-		LifeTimeES();
-		LifeTimeEC();
-		LifeTimeEL();
-		LifeTimeNR();
+		document.getElementById('lifetimeElectronStripping_check').disabled = true;
 	}
 	initial();
 

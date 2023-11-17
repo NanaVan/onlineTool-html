@@ -270,3 +270,222 @@ function LifeTimeNR(){
 	result_nr.innerHTML = '<span style="color:darkorange; font-family:Roboto;">' + toSci(tau_nr,3) + '</span>';
 }
 
+
+
+
+// controller
+
+function LifeTimeTotal(status){
+	if (status){
+		var lambda_nr = 0;
+		var lambda_REC = 0;
+		var lambda_ES = 0;
+		var lambda_EC = 0;
+		var lambda_EL = 0;
+		var lambda_NR = 0;
+		if (document.getElementById('lifetimeREC_check').checked == true){
+			lambda_REC = 1/Number(document.getElementById('result_lifetime_rec').textContent);
+		}
+		if (document.getElementById('lifetimeScattering_check').checked == true){
+			lambda_ES = 1/Number(document.getElementById('result_lifetime_es').textContent);
+		}
+		if (document.getElementById('lifetimeElectronCapture_check').checked == true){
+			lambda_EC = 1/Number(document.getElementById('result_lifetime_ec').textContent);
+		}
+		if (document.getElementById('lifetimeElectronStripping_check').checked == true){
+			lambda_EL = 1/Number(document.getElementById('result_lifetime_el').textContent);
+		}
+		if (document.getElementById('lifetimeNuclearReaction_check').checked == true){
+			lambda_NR = 1/Number(document.getElementById('result_lifetime_nr').textContent);
+		}
+		lambda_total = lambda_REC + lambda_ES + lambda_EC + lambda_EL + lambda_NR;
+		var tau_total = 1/lambda_total;
+		var result_total_s = document.getElementById('result_lifetime_total_s');
+		result_total_s.innerHTML = '<span style="color:red; font-family:Roboto;">' + toSci(tau_total,3) + '</span>';
+		var result_total_min = document.getElementById('result_lifetime_total_min');
+		result_total_min.innerHTML = '<span style="color:red; font-family:Roboto;">' + toSci(tau_total/60,3) + '</span>';
+
+		var result_total_hour = document.getElementById('result_lifetime_total_hour');
+		result_total_hour.innerHTML = '<span style="color:red; font-family:Roboto;">' + toSci(tau_total/3600,3) + '</span>';
+
+		document.getElementById('ratio_lifetime_REC').innerHTML = '<span style="color:red; font-family:Roboto;">' + (lambda_REC/lambda_total*100).toFixed(3) + '</span>';
+		document.getElementById('ratio_lifetime_ES').innerHTML = '<span style="color:red; font-family:Roboto;">' + (lambda_ES/lambda_total*100).toFixed(3) + '</span>';
+		document.getElementById('ratio_lifetime_EC').innerHTML = '<span style="color:red; font-family:Roboto;">' + (lambda_EC/lambda_total*100).toFixed(3) + '</span>';
+		document.getElementById('ratio_lifetime_EL').innerHTML = '<span style="color:red; font-family:Roboto;">' + (lambda_EL/lambda_total*100).toFixed(3) + '</span>';
+		document.getElementById('ratio_lifetime_NR').innerHTML = '<span style="color:red; font-family:Roboto;">' + (lambda_NR/lambda_total*100).toFixed(3) + '</span>';
+
+	}else{
+		var result_total_s = document.getElementById('result_lifetime_total_s');
+		result_total_s.innerHTML = "";
+		var result_total_min = document.getElementById('result_lifetime_total_min');
+		result_total_min.innerHTML = "";
+		var result_total_hour = document.getElementById('result_lifetime_total_hour');
+		result_total_hour.innerHTML = "";
+		document.getElementById('ratio_lifetime_REC').innerHTML = "";
+		document.getElementById('ratio_lifetime_ES').innerHTML = "";
+		document.getElementById('ratio_lifetime_EC').innerHTML = "";
+		document.getElementById('ratio_lifetime_EL').innerHTML = "";
+		document.getElementById('ratio_lifetime_NR').innerHTML = "";	
+	}
+}
+
+function InformationLock(){
+	if (document.getElementById('lifetimeREC_check').checked == true || document.getElementById('lifetimeScattering_check').checked == true || document.getElementById('lifetimeElectronCapture_check').checked == true || document.getElementById('lifetimeElectronStripping_check').checked == true || document.getElementById('lifetimeNuclearReaction_check').checked == true) {
+		SettingInformationStatus(true);					
+		RingModeInformationStatus(true);
+		GasInformationStatus(true);
+		LifeTimeTotal(true);
+	}else{
+		SettingInformationStatus(false);					
+		RingModeInformationStatus(false);
+		GasInformationStatus(false);
+		LifeTimeTotal(false);
+	}
+}
+
+function SettingInformationStatus(status){
+	if (status){
+		document.getElementById('ion_element').disabled = true;
+		document.getElementById('ion_Z').disabled = true;
+		document.getElementById('ion_A').disabled = true;
+		document.getElementById('ion_charge').disabled = true;
+		document.getElementById('ion_energy_MeVu').disabled = true;
+		document.getElementById('ion_energy_AMeV').disabled = true;
+		document.getElementById('ion_totalKineticEnergy').disabled = true;
+		document.getElementById('ion_Brho').disabled = true;
+		document.getElementById('ion_gamma').disabled = true;
+		document.getElementById('ion_beta').disabled = true;
+		document.getElementById('ion_velocity').disabled = true;
+	}else{
+		document.getElementById('ion_element').disabled = false;
+		document.getElementById('ion_Z').disabled = false;
+		document.getElementById('ion_A').disabled = false;
+		document.getElementById('ion_charge').disabled = false;
+		document.getElementById('ion_energy_MeVu').disabled = false;
+		document.getElementById('ion_energy_AMeV').disabled = false;
+		document.getElementById('ion_totalKineticEnergy').disabled = false;
+		document.getElementById('ion_Brho').disabled = false;
+		document.getElementById('ion_gamma').disabled = false;
+		document.getElementById('ion_beta').disabled = false;
+		document.getElementById('ion_velocity').disabled = false;
+	}
+}
+
+function RingModeInformationStatus(status){
+	if (status){
+		document.getElementById('interTG_A_nu').disabled = true;
+		document.getElementById('interTG_beta').disabled = true;
+		document.getElementById('isochronous_A_nu').disabled = true;
+		document.getElementById('isochronous_beta').disabled = true;
+		document.getElementById('normal_A_nu').disabled = true;
+		document.getElementById('normal_beta').disabled = true;
+	}else{
+		document.getElementById('interTG_A_nu').disabled = false;
+		document.getElementById('interTG_beta').disabled = false;
+		document.getElementById('isochronous_A_nu').disabled = false;
+		document.getElementById('isochronous_beta').disabled = false;
+		document.getElementById('normal_A_nu').disabled = false;
+		document.getElementById('normal_beta').disabled = false;
+	}
+}
+
+function GasInformationStatus(status){
+	if (status){
+		document.getElementById('gas_pressure').disabled = true;
+		document.getElementById('gas_temperture').disabled = true;
+		for (var i=0; i<6; i++){
+			document.getElementById(`Gas${i}_Z_t`).disabled = true;
+			document.getElementById(`Gas${i}_quantity_t`).disabled = true;
+		}
+	}else{
+		document.getElementById('gas_pressure').disabled = false;
+		document.getElementById('gas_temperture').disabled = false;
+		for (var i=0; i<6; i++){
+			document.getElementById(`Gas${i}_Z_t`).disabled = false;
+			document.getElementById(`Gas${i}_quantity_t`).disabled = false;
+		}
+	}
+}
+
+function selectREC(e){
+	if (e.checked == true){
+		console.log('flag REC 1');
+		document.getElementById('T_v').disabled = true;
+		document.getElementById('I_e').disabled = true;
+		document.getElementById('r_0').disabled = true;
+		document.getElementById('len_C').disabled = true;
+		document.getElementById('len_cool').disabled = true;
+		LifeTimeREC();
+	}else{
+		console.log('flag REC 0');
+		var result = document.getElementById('result_lifetime_rec');
+		result.innerHTML = "";
+		document.getElementById('T_v').disabled = false;
+		document.getElementById('I_e').disabled = false;
+		document.getElementById('r_0').disabled = false;
+		document.getElementById('len_C').disabled = false;
+		document.getElementById('len_cool').disabled = false;
+	}
+	InformationLock();
+}
+
+function selectES(e){
+	if (e.checked == true){
+		console.log('flag ES 1');
+		document.getElementById('selectMode').disabled = true;
+		document.getElementById('emittance').disabled = true;
+		LifeTimeES();
+	}else{
+		console.log('flag ES 0');
+		var result_ss = document.getElementById('result_lifetime_ss');
+		result_lifetime_ss.innerHTML = "";
+		var result_ms = document.getElementById('result_lifetime_ms');
+		result_lifetime_ms.innerHTML = "";
+		var result_es = document.getElementById('result_lifetime_es');
+		result_lifetime_es.innerHTML = "";
+		document.getElementById('selectMode').disabled = false;
+		document.getElementById('emittance').disabled = false;
+	}
+	InformationLock();
+}
+
+function selectEC(e){
+	if (e.checked == true){
+		console.log('flag EC 1');
+		LifeTimeEC();
+	}else{
+		console.log('flag EC 0');
+		var result_ec = document.getElementById('result_lifetime_ec');
+		result_ec.innerHTML = "";
+		var method_ec = document.getElementById('EC_method');
+		method_ec.innerHTML = "";
+	}
+	InformationLock();
+}
+
+function selectEL(e){
+	if (e.checked == true){
+		console.log('flag EL 1');
+		LifeTimeEL();
+	}else{
+		console.log('flag EL 0');
+		var result_el = document.getElementById('result_lifetime_el');
+		result_el.innerHTML = "";
+		var method_ec = document.getElementById('EL_method');
+		method_ec.innerHTML = "";
+	}
+	InformationLock();
+}
+
+function selectNR(e){
+	if (e.checked == true){
+		console.log('flag NR 1');
+		LifeTimeNR();
+	}else{
+		console.log('flag NR 0');
+		var result_el = document.getElementById('result_lifetime_nr');
+		result_el.innerHTML = "";
+	}
+	InformationLock();
+}
+

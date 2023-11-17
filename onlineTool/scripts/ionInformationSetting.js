@@ -40,32 +40,32 @@ function limiter_ion_element(input){
 		document.getElementById('ion_Z').value = String(index + 1);
 	}
 	document.getElementById('ion_charge').value = document.getElementById('ion_Z').value;
+	document.getElementById('lifetimeElectronStripping_check').disabled = true;
 	initialIon_info_dynamic();
-	//document.getElementById('lifetimeElectronStripping_check').disabled = true;
 }
 
 function limiter_ion_Z(input){
 	if (input.value > 110 || input.value < 4) input.value = '26';
 	document.getElementById('ion_element').value = elements[Number(input.value)-1];
 	document.getElementById('ion_charge').value = input.value;
+	document.getElementById('lifetimeElectronStripping_check').disabled = true;
 	initialIon_info_dynamic();
-	//document.getElementById('lifetimeElectronStripping_check').disabled = true;
 }
 
 function limiter_ion_A(input){
+	document.getElementById('lifetimeElectronStripping_check').disabled = true;
 	initialIon_info_dynamic();
-	//document.getElementById('lifetimeElectronStripping_check').disabled = true;
 }
 
 function limiter_ion_charge(input){
 	if (input.value >= document.getElementById('ion_Z').value){
 		input.value = document.getElementById('ion_Z').value;
-		//document.getElementById('lifetimeElectronStripping_check').disabled = true;
+		document.getElementById('lifetimeElectronStripping_check').disabled = true;
 	}else if (input.value < document.getElementById('ion_Z').value-3){
 		input.value = document.getElementById('ion_Z').value-3;
-		//document.getElementById('lifetimeElectronStripping_check').disabled = false;
+		document.getElementById('lifetimeElectronStripping_check').disabled = false;
 	}else{
-		//document.getElementById('lifetimeElectronStripping_check').disabled = false;
+		document.getElementById('lifetimeElectronStripping_check').disabled = false;
 	}
 	initialIon_info_dynamic();
 }
