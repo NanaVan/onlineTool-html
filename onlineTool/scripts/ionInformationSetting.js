@@ -189,7 +189,7 @@ function change_ion_gamma(input){
 	var A = Number(document.getElementById('ion_A').value);
 	window.gamma = Number(input.value);
 	window.beta = Math.sqrt(1 - 1/Math.pow(window.gamma,2));
-	wwindow.velocity = window.beta * speed_c * 1e-7;
+	window.velocity = window.beta * speed_c * 1e-7;
 	var Brho = window.gamma * window.beta * window.ion_mass / Q * speed_c * u2kg / elementary_charge;
 	var energy_MeVu = (window.gamma - 1) / MeV2u;
 	var TKE = window.ion_mass * energy_MeVu; 
