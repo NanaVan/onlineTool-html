@@ -94,14 +94,20 @@ a:visited{
   		<table id="primaryBeam" align="center">
 			<caption>Primary Beam</caption>
 			<tr>
-   				<td style="text-align:right">Charge state:</td>
-   				<td><input type="text" id="ChargeStateP" size="10" value="19" enterkeyhint="done"/> </td>
+   				<td style="text-align:right">A:</td>
+   				<td><input type="text" id="primaryBeam_A" size="10" value="56" enterkeyhint="done"/> </td>
    				<td style="text-align:left"></td>
 			</tr>
 			<tr>
-				<td></td>
-   				<td style="text-align:left; color:gray" colspan="2">* e.g. 58Ni19+, 19</td>
-  			</tr>
+   				<td style="text-align:right">Element:</td>
+   				<td><input type="text" id="primaryBeam_element" size="10" value="Fe" enterkeyhint="done" onchange='limiter_primaryBeam_element(this);'/> </td>
+   				<td style="text-align:left"></td>
+			</tr>
+			<tr>
+   				<td style="text-align:right">Q:</td>
+   				<td><input type="text" id="primaryBeam_Q" size="10" value="19" enterkeyhint="done"/> </td>
+   				<td style="text-align:left"></td>
+			</tr>
   			<tr>
    				<td style="text-align:right">DCCTm</td>
    				<td><input type="text" id="DCCTm" size="10" value="850" enterkeyhint="done" /> </td>
@@ -113,9 +119,9 @@ a:visited{
 				<td style="text-align:left">[m]</td>
   			</tr>
   			<tr>
-				<td style="text-align:right">Velocity:</td>
-				<td><input type="text" id="PBv" size="10" value="19.610" enterkeyhint="done" /> </td>
-				<td style="text-align:left">[cm/ns]</td>
+				<td style="text-align:right">Energy:</td>
+				<td><input type="text" id="primaryBeam_energy" size="10" value="300" enterkeyhint="done" /> </td>
+				<td style="text-align:left">[MeV/u]</td>
   			</tr>
 			<tr>
 				<td style="text-align:right">Beam intensity:</td>
@@ -128,14 +134,20 @@ a:visited{
   		<table id="secondaryBeam" align="center">
 			<caption>Secondary Beam</caption>
 			<tr>
-   				<td style="text-align:right">Charge state:</td>
-   				<td><input type="text" id="ChargeStateS" size="10" value="28" enterkeyhint="done"/> </td>
+   				<td style="text-align:right">A:</td>
+   				<td><input type="text" id="secondaryBeam_A" size="10" value="56" enterkeyhint="done" onchange='limiter_secondaryBeam_element(this);'/> </td>
    				<td style="text-align:left"></td>
 			</tr>
 			<tr>
-				<td></td>
-   				<td style="text-align:left; color:gray" colspan="2">* e.g. 58Ni28+, 28</td>
-  			</tr>
+   				<td style="text-align:right">Element:</td>
+   				<td><input type="text" id="secondaryBeam_element" size="10" value="Fe" enterkeyhint="done"/> </td>
+   				<td style="text-align:left"></td>
+			</tr>
+			<tr>
+   				<td style="text-align:right">Q:</td>
+   				<td><input type="text" id="secondaryBeam_Q" size="10" value="26" enterkeyhint="done"/> </td>
+   				<td style="text-align:left"></td>
+			</tr>
   			<tr>
    				<td style="text-align:right">DCCTe:</td>
    				<td><input type="text" id="DCCTe" size="10" value="400" enterkeyhint="done" /> </td>
@@ -147,9 +159,9 @@ a:visited{
 				<td style="text-align:left">[m]</td>
   			</tr>
   			<tr>
-				<td style="text-align:right">Velocity:</td>
-				<td><input type="text" id="SBv" size="10" value="19.456" enterkeyhint="done" /> </td>
-				<td style="text-align:left">[cm/ns]</td>
+				<td style="text-align:right">Bρ:</td>
+				<td><input type="text" id="secondaryBeam_Brho" size="10" value="5.701" enterkeyhint="done" /> </td>
+				<td style="text-align:left">[Tm]</td>
   			</tr>
 			<tr>
 				<td style="text-align:right">Beam intensity:</td>
@@ -212,7 +224,7 @@ a:visited{
 		<td align="center" width="50%">
 			<table id="ion_info_dynamic" align="center">
 			<tr>
-				<td style="text-align:right">Enery:</td>
+				<td style="text-align:right">Energy:</td>
 				<td><input type="text" id="ion_energy_MeVu" size="10" value="116.72182" enterkeyhint="done" onchange='change_ion_energy_MeVu(this);'/></td>
 				<td style="text-align:left">[MeV/u]</td>
 			</tr>
@@ -608,6 +620,7 @@ a:visited{
 </body>
 
 <script src='/dist/sql-wasm.js'></script>
+<script src='/scripts/constantValues.js'></script>
 <script src='/scripts/ionNumberEstimation.js'></script>
 <script src='/scripts/ionInformationSetting.js'></script>
 <script src='/scripts/harmonicCalculation.js'></script>

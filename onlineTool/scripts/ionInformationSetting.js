@@ -1,8 +1,3 @@
-function toSci(xx, digi){
-  //return xx.toExponential(digi).replace(/e\+?/, ' x 10^');
-  return xx.toExponential(digi);
-}
-
 async function checkIon(){
 	const [SQL, buf] = await Promise.all([
 		initSqlJs({locateFile: file=> `/dist/${file}`}),
@@ -27,8 +22,6 @@ async function checkIon(){
 	window.ion_mass = result[0];
 	db.close();
 }
-
-const elements = ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds'];
 
 function limiter_ion_element(input){
 	var index = elements.indexOf(input.value);
@@ -70,14 +63,6 @@ function limiter_ion_charge(input){
 	initialIon_info_dynamic();
 }
 
-// parameter from CODATA 2018
-const speed_c = 299792458; // [m/s] speed of light in vacuum
-const elementary_charge = 1.602176634e-19; // [C] elementary charge
-const me = 5.48579909065e-4; // [u] electron mass in u
-const me_kg = 9.1093837015e-31; // [kg] electron mass in kg
-const u2kg = 1.66053906660e-27; // [kg/u] amount of kg per 1 u
-const eV2J = 1.602176634e-19; // [J/eV]
-const MeV2u = 1.07354410233e-3; // [u/MeV] amount of u per 1 MeV
 
 async function initialIon_info_dynamic(){
 	await checkIon();
