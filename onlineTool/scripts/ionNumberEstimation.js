@@ -16,7 +16,7 @@ async function beamCalc(){
 		let primaryBeam_energy = document.getElementById('primaryBeam_energy').value; // [MeV/u]
 		let primaryBeam_gamma = 1 + primaryBeam_energy * MeV2u;
 		let primaryBeam_beta = Math.sqrt(1 - 1/Math.pow(primaryBeam_gamma,2));
-		var PBppp = DCCTm*1e-6 / primaryBeam_Q / primaryBeam_beta*speed_c * LengthCSRm / elementary_charge;
+		var PBppp = DCCTm*1e-6 / primaryBeam_Q / (primaryBeam_beta*speed_c) * LengthCSRm / elementary_charge;
   		document.getElementById('primaryBeam').rows[6].cells[1].innerHTML = '<span style="color:darkorange; font-family:Roboto;">' + toSci(PBppp,3) + '</span>';
 	}	
 	if (!secondaryBeam_result.length){
@@ -29,7 +29,7 @@ async function beamCalc(){
 		let secondaryBeam_mass = secondaryBeam_result[0]; // [MeV]
 		let secondaryBeam_gamma_beta = secondaryBeam_Brho / secondaryBeam_mass * secondaryBeam_Q / speed_c / u2kg * elementary_charge;
 		let secondaryBeam_beta = secondaryBeam_gamma_beta / Math.sqrt(1 + Math.pow(secondaryBeam_gamma_beta, 2));
-		var SBppp = DCCTe*1e-6 / secondaryBeam_Q / secondaryBeam_beta*speed_c * LengthCSRe / elementary_charge;
+		var SBppp = DCCTe*1e-6 / secondaryBeam_Q / (secondaryBeam_beta*speed_c) * LengthCSRe / elementary_charge;
   		document.getElementById('secondaryBeam').rows[6].cells[1].innerHTML = '<span style="color:darkorange; font-family:Roboto;">' + toSci(SBppp,3) + '</span>';
 	}
 	if (primaryBeam_result.length && secondaryBeam_result.length){
