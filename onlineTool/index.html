@@ -85,9 +85,8 @@ a:visited{
 
 <body>
 
-
+<div style="padding:1% 0 5%;">
 <h1 align="center">Ion Number Estimation</h1>
-
 <table id="convertor" align="center">
   	<tr>
 		<td align="center" width="50%">
@@ -177,10 +176,14 @@ a:visited{
 	<td width="100"></td>
   </tr>
  </table>
+ </div>
 
- <h1 align="center">Ion Information</h1>
+ <hr width="15%" />
 
- <table id="ion_information" align="center">
+<div style="padding:5% 0 5%;">
+<h1 align="center">Ion Information</h1>
+
+<table id="ion_information" align="center">
 	<tr>
 		<td align="center" width="50%">
 			<table id="ion_info_static" align="center">
@@ -266,6 +269,9 @@ a:visited{
 <h1 align="center">Harmonic Calculation</h1>
 
 <table id="harmonic_calculation" align="center">
+	<tr>
+		<td style='text-align:center; color:gray;' colspan='3'>Ion inherited from Ion Information</td>
+	</tr>
 	<tr>
 		<td style="text-align:right">Length of Orbit:</td>
 		<td><input type="text" id="length_orbit" size="10" value="128.8" enterkeyhint="done" /> </td>
@@ -451,8 +457,14 @@ a:visited{
 <h2 align='center'>Storage Life Estimation Result</h2>
 <table id='lifeTable' align='center'>
 	<tr>
+		<td style='text-align:center; color:gray;' colspan='3'>Ion inherited from Ion Information</td>
+	</tr>
+	<tr>
+		<td style='text-align:left;' colspan='3'><b>Reaction with eletrons from E-Cooler</b></td>
+	</tr>
+	<tr>
 		<td><input type='checkbox' id='lifetimeREC_check' onclick='selectREC(this)'/>
-	  		<label for='lifetimeREC_check'>EC on</label>
+	  		<label for='lifetimeREC_check'>Radioactive Electron Capture</label>
 		</td>
 		<td></td>
 		<td></td>
@@ -491,6 +503,9 @@ a:visited{
 		<td style="text-align:right">τ<sub>rec</sub></td>
 		<td style="text-align:left" id='result_lifetime_rec'></td>
 		<td style="text-align:left">[s]</td>
+	</tr>
+	<tr>
+		<td style='text-align:left;' colspan='3'><b>Reaction with residual gas</b></td>
 	</tr>
   	<tr>
 		<td><input type='checkbox' id='lifetimeScattering_check' onclick='selectES(this)'/>
@@ -573,8 +588,14 @@ a:visited{
 		<td style="text-align:left" id='result_lifetime_nr'></td>
 		<td style="text-align:left">[s]</td>
 	</tr>
+	<tr>
+		<td style='text-align:left;' colspan='3'><hr width='25%'/></td>
+	</tr>
+	<tr>
+		<td style='text-align:center;' colspan='3'><b>Summary of results</b></td>
+	</tr>
   	<tr>
-		<td style="text-align:center">τ<sub>total</sub></td>
+		<td style="text-align:right">τ<sub>total</sub></td>
 		<td style="text-align:left" id='result_lifetime_total_s'></td>
 		<td style="text-align:left">[s]</td>
   	</tr>
@@ -615,7 +636,7 @@ a:visited{
   	</tr>
 </table>
 </div>
-
+</div>
 <p style="text-align:center; color:gray">Web generated from <a href="https://github.com/NanaVan/onlineTool-html">NanaVan/onlineTool-html</a>(<a href="https://github.com/NanaVan/onlineTool-html/issues">bug reports</a>). Copyright 2023 Q.Wang.</p>
 </body>
 
