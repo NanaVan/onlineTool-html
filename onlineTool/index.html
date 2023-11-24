@@ -649,11 +649,11 @@ a:visited{
 <script src='/scripts/storageLifeCalculation.js'></script>
 <script>
 	async function initial(){
+		await beamCalc();
 		await initialIon_info_dynamic();
 		document.getElementById('lifetimeElectronStripping_check').disabled = true;
 	}
 	initial();
-
 </script>
 
 

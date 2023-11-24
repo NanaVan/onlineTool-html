@@ -7,6 +7,8 @@ async function beamCalc(){
 	let stmt = db.prepare("SELECT MASS FROM IONICDATA WHERE Z=$zval AND Q=$qval AND A=$aval AND ISOMERIC=0");
 	let primaryBeam_result = stmt.get({'$zval': elements.indexOf(document.getElementById('primaryBeam_element').value)+1, '$qval': document.getElementById('primaryBeam_Q').value, '$aval': document.getElementById('primaryBeam_A').value});
 	let secondaryBeam_result = stmt.get({'$zval': elements.indexOf(document.getElementById('secondaryBeam_element').value)+1, '$qval': document.getElementById('secondaryBeam_Q').value, '$aval': document.getElementById('secondaryBeam_A').value});
+	stmt.free();
+	db.close();
 	if (!primaryBeam_result.length){
   		document.getElementById('primaryBeam').rows[6].cells[1].innerHTML = '<span style="color:red; font-family:Roboto;">' + 'No such ion!' + '</span>';
 	}else{
@@ -41,7 +43,6 @@ async function beamCalc(){
 	}
 }
 
-beamCalc();
 
 function limiter_primaryBeam_element(input){
 	var index = elements.indexOf(input.value);
