@@ -219,13 +219,13 @@ function LifeTimeEL(){
 			if (ion_Z >= Z_t){
 				var I_ratio = 0;
 				for (var j=1; j<ion_num+1; j++){
-					I_ratio += bindEnergy['H'][0] / bindEnergy[ion_element][j];
+					I_ratio += bindEnergy['H'][1] / bindEnergy[ion_element][j];
 				}
 				var lambda_el_temp = 4 * Math.PI * Math.pow(alpha_0, 2) * Math.pow(alpha / window.beta, 2) * (Z_t + 1) * Z_t * I_ratio * rho * window.beta * speed_c; // [s^-1]
 			}else if (ion_Z <= Math.pow(Z_t, 1/3)) {
 				var I_ration = 0;
 				for (var j=1; j<ion_num+1; j++){
-					I_ratio += Math.pow(bindEnergy['H'][0] / bindEnergy[ion_element][j], 1/2);
+					I_ratio += Math.pow(bindEnergy['H'][1] / bindEnergy[ion_element][j], 1/2);
 				}
 				var lambda_el_temp =  Math.PI * Math.pow(alpha_0, 2) * alpha / window.beta * Math.pow(Z_t, 2/3) * I_ratio * rho * window.beta * speed_c;
 			}else{
