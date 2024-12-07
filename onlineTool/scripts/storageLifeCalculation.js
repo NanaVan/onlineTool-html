@@ -135,7 +135,7 @@ function LifeTimeEC(){
 			let Z_t = Number(document.getElementById(`Gas${i}_Z_t`).value);
 			let quantity = Number(document.getElementById(`Gas${i}_quantity_t`).value);
 			var rho = gas_rho * quantity; // [m^-3]
-			var lambda_ec_temp = 2e-24 * 1e-4 * Math.pow(ion_Z, 1/2) * Math.pow(q_bar, 2) * Z_t * (1 - Math.exp(-137*window.beta/Math.pow(Z_t, 0.67))) * Math.pow(Math.pow(window.gamma, 2) - 1, -2) * Math.pow(ion_charge/q_bar, b) * rho * window.beta * c; // [s^-1]
+			var lambda_ec_temp = 2e-24 * 1e-4 * Math.pow(ion_Z, 1/2) * Math.pow(q_bar, 2) * Z_t * (1 - Math.exp(-137*window.beta/Math.pow(Z_t, 0.67))) * Math.pow(Math.pow(window.gamma, 2) - 1, -2) * Math.pow(ion_charge/q_bar, b) * rho * window.beta * speed_c; // [s^-1]
 			lambda_ec += lambda_ec_temp;
 		}
 
