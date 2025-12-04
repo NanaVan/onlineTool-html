@@ -114,8 +114,8 @@ a:visited{
    				<td style="text-align:left">[μA]</td>
   			</tr>
   			<tr>
-				<td style="text-align:right">Length of CSRm:</td>
-				<td><input type="text" id="CSRmL" size="10" value="161" enterkeyhint="done" /> </td>
+				<td style="text-align:right">Length of BRing:</td>
+				<td><input type="text" id="CSRmL" size="10" value="302.3" enterkeyhint="done" /> </td>
 				<td style="text-align:left">[m]</td>
   			</tr>
   			<tr>
@@ -159,8 +159,8 @@ a:visited{
    				<td style="text-align:left">[μA]</td>
   			</tr>
   			<tr>
-				<td style="text-align:right">Length of CSRe:</td>
-				<td><input type="text" id="CSReL" size="10" value="128.8" enterkeyhint="done" /> </td>
+				<td style="text-align:right">Length of SRing:</td>
+				<td><input type="text" id="CSReL" size="10" value="277.3" enterkeyhint="done" /> </td>
 				<td style="text-align:left">[m]</td>
   			</tr>
   			<tr>
@@ -285,12 +285,12 @@ a:visited{
 	</tr>
 	<tr>
 		<td style="text-align:right">Length of Orbit:</td>
-		<td><input type="text" id="length_orbit" size="10" value="128.8" enterkeyhint="done" /> </td>
+		<td><input type="text" id="length_orbit" size="10" value="277.3" enterkeyhint="done" /> </td>
 		<td style="text-align:left">[m]</td>
   	</tr>
   	<tr>
 		<td style="text-align:right">Center frequency:</td>
-		<td><input type="text" id="center_frequency" size="10" value="243.5" enterkeyhint="done" /> </td>
+		<td><input type="text" id="center_frequency" size="10" value="308.6" enterkeyhint="done" /> </td>
 		<td style="text-align:left">[MHz]</td>
   	</tr>
   	<tr>
@@ -330,39 +330,87 @@ a:visited{
 			<td style='text-align:center' colspan='3'><b>Internal Target Mode</b></td>
 		</tr>
 		<tr>
+			<td style='text-align:center' colspan='3'><b>Before deceleration γ = 4.39 (Δp/p = ±0.3%)</b></td>
+		</tr>
+		<tr>
 			<td style='text-align:right'>Vertical acceptance A<sub>ν</sub></td>
-			<td><input type='text' id='interTG_A_nu' size='10' value='75' enterkeyhint='done' /></td>
+			<td><input type='text' id='interTG_befDec_A_nu' size='10' value='60' enterkeyhint='done' /></td>
 			<td style='text-align:left'>[πmm mrad]</td>
 		</tr>
 		<tr>
 			<td style='text-align:right'>Average β function &#10092;β<sub>y</sub>&#10093;:</td>
-			<td><input type='text' id='interTG_beta' size='10' value='7.90744811' enterkeyhint='done' /></td>
+			<td><input type='text' id='interTG_befDec_beta' size='10' value='45.44765641' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[m]</td>
+		</tr>
+		<tr>
+			<td style='text-align:center' colspan='3'><b>After deceleration γ = 4.39 (Δp/p = ±0.8%)</b></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Vertical acceptance A<sub>ν</sub></td>
+			<td><input type='text' id='interTG_AfDec_A_nu' size='10' value='72' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[πmm mrad]</td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Average β function &#10092;β<sub>y</sub>&#10093;:</td>
+			<td><input type='text' id='interTG_AfDec_beta' size='10' value='45.44765641' enterkeyhint='done' /></td>
 			<td style='text-align:left'>[m]</td>
 		</tr>
 		<tr>
 			<td style='text-align:center' colspan='3'><b>Isochronous Mode</b></td>
 		</tr>
 		<tr>
+			<td style='text-align:center' colspan='3'><b>γ = 1.43 (Δp/p = ± 0.2%)</b></td>
+		</tr>
+		<tr>
 			<td style='text-align:right'>Vertical acceptance A<sub>ν</sub>:</td>
-			<td><input type='text' id='isochronous_A_nu' size='10' value='20' enterkeyhint='done' /></td>
+			<td><input type='text' id='isochronous_1.43_A_nu' size='10' value='30' enterkeyhint='done' /></td>
 			<td style='text-align:left'>[πmm mrad]</td>
 		</tr>
 		<tr>
 			<td style='text-align:right'>Average β function &#10092;β<sub>y</sub>&#10093;:</td>
-			<td><input type='text' id='isochronous_beta' size='10' value='7.4971677' enterkeyhint='done' /></td>
+			<td><input type='text' id='isochronous_1.43_beta' size='10' value='49.71674399' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[m]</td>
+		</tr>
+		<tr>
+			<td style='text-align:center' colspan='3'><b>γ = 1.67 (Δp/p = ±0.28%)</b></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Vertical acceptance A<sub>ν</sub>:</td>
+			<td><input type='text' id='isochronous_1.67_A_nu' size='10' value='30' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[πmm mrad]</td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Average β function &#10092;β<sub>y</sub>&#10093;:</td>
+			<td><input type='text' id='isochronous_1.67_beta' size='10' value='35.79667523' enterkeyhint='done' /></td>
 			<td style='text-align:left'>[m]</td>
 		</tr>
 		<tr>
 			<td style='text-align:center' colspan='3'><b>Normal Mode</b></td>
 		</tr>
 		<tr>
+			<td style='text-align:center' colspan='3'><b>Larage emittance γ = 3.19 (Δp/p = ±1.0%)</b></td>
+		</tr>
+		<tr>
 			<td style='text-align:right'>Vertical acceptance A<sub>ν</sub></td>
-			<td><input type='text' id='normal_A_nu' size='10' value='80' enterkeyhint='done' /></td>
+			<td><input type='text' id='normal_large_A_nu' size='10' value='120' enterkeyhint='done' /></td>
 			<td style='text-align:left'>[πmm mrad]</td>
 		</tr>
 		<tr>
 			<td style='text-align:right'>Average β function &#10092;β<sub>y</sub>&#10093;:</td>
-			<td><input type='text' id='normal_beta' size='10' value='7.9073749' enterkeyhint='done' /></td>
+			<td><input type='text' id='normal_large_beta' size='10' value='19.13788819' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[m]</td>
+		</tr>
+		<tr>
+			<td style='text-align:center' colspan='3'><b>Small emittance γ = 3.19 (Δp/p = ±1.5%)</b></td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Vertical acceptance A<sub>ν</sub></td>
+			<td><input type='text' id='normal_small_A_nu' size='10' value='30' enterkeyhint='done' /></td>
+			<td style='text-align:left'>[πmm mrad]</td>
+		</tr>
+		<tr>
+			<td style='text-align:right'>Average β function &#10092;β<sub>y</sub>&#10093;:</td>
+			<td><input type='text' id='normal_small_beta' size='10' value='19.13788819' enterkeyhint='done' /></td>
 			<td style='text-align:left'>[m]</td>
 		</tr>
 	</table>
@@ -482,17 +530,17 @@ a:visited{
 	</tr>
 	<tr>
 		<td style="text-align:right">E-beam vertical temperture:</td>
-	    <td><input type="text" id="T_v" size="10" value="1" enterkeyhint="done" /></td>
+	    <td><input type="text" id="T_v" size="10" value="0.5" enterkeyhint="done" /></td>
 		<td style="text-align:left">[eV]</td>
 	</tr>
 	<tr>
 		<td style="text-align:right">E-beam current:</td>
-	    <td><input type="text" id="I_e" size="10" value="0.2" enterkeyhint="done" /></td>
+	    <td><input type="text" id="I_e" size="10" value="1.0" enterkeyhint="done" /></td>
 		<td style="text-align:left">[A]</td>
 	</tr>
 	<tr>
 		<td style="text-align:right">E-beam radius:</td>
-	    <td><input type="text" id="r_0" size="10" value="0.02" enterkeyhint="done" /></td>
+	    <td><input type="text" id="r_0" size="10" value="0.03" enterkeyhint="done" /></td>
 		<td style="text-align:left">[m]</td>
 	</tr>
 	<tr>
@@ -502,12 +550,12 @@ a:visited{
 	</tr>
 	<tr>
 		<td style="text-align:right">Length of ECooling:</td>
-	    <td><input type="text" id="len_cool" size="10" value="3.4" enterkeyhint="done" /></td>
+	    <td><input type="text" id="len_cool" size="10" value="7.4" enterkeyhint="done" /></td>
 		<td style="text-align:left">[m]</td>
 	</tr>
 	<tr>
 		<td style="text-align:right">Length of storage Ring:</td>
-	    <td><input type="text" id="len_C" size="10" value="128.8" enterkeyhint="done" /></td>
+	    <td><input type="text" id="len_C" size="10" value="277.3" enterkeyhint="done" /></td>
 		<td style="text-align:left">[m]</td>
 	</tr>
 	<tr>
@@ -528,9 +576,12 @@ a:visited{
 	<tr>
 		<td style="text-align:right">Ring mode:</td>
 		<td><select id='selectMode'>
-				<option value='inter_target'>internal target</option>
-				<option value='isochronous'>isochronous</option>
-				<option value='normal'>normal</option>
+				<option value='inter_befDec_target'>internal target(before deceleration)</option>
+				<option value='inter_AfDec_target'>internal target(after deceleration)</option>
+				<option value='isochronous_1.43'>isochronous(γ = 1.43)</option>
+				<option value='isochronous_1.67'>isochronous(γ = 1.67)</option>
+				<option value='normal_large'>normal(large emittance)</option>
+				<option value='normal_small'>normal(small emittance)</option>
 			</select>
 		</td>
 		<td></td>

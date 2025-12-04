@@ -52,16 +52,28 @@ function LifeTimeES(){
 	var average_beta = 0;
 	switch (mode_index) {
 		case 0:
-			A_nu = Number(document.getElementById('interTG_A_nu').value); // [πmm mrad]
-			average_beta = Number(document.getElementById('interTG_beta').value); // [m]
+			A_nu = Number(document.getElementById('interTG_befDec_A_nu').value); // [πmm mrad]
+			average_beta = Number(document.getElementById('interTG_befDec_beta').value); // [m]
 			break;
 		case 1:
-			A_nu = Number(document.getElementById('isochronous_A_nu').value);
-			average_beta = Number(document.getElementById('isochronous_beta').value);
+			A_nu = Number(document.getElementById('interTG_AfDec_A_nu').value); // [πmm mrad]
+			average_beta = Number(document.getElementById('interTG_AfDec_beta').value); // [m]
 			break;
 		case 2:
-			A_nu = Number(document.getElementById('normal_A_nu').value);
-			average_beta = Number(document.getElementById('normal_beta').value);
+			A_nu = Number(document.getElementById('isochronous_1.43_A_nu').value);
+			average_beta = Number(document.getElementById('isochronous_1.43_beta').value);
+			break;
+		case 3:
+			A_nu = Number(document.getElementById('isochronous_1.67_A_nu').value);
+			average_beta = Number(document.getElementById('isochronous_1.67_beta').value);
+			break;
+		case 4:
+			A_nu = Number(document.getElementById('normal_large_A_nu').value);
+			average_beta = Number(document.getElementById('normal_large_beta').value);
+			break;
+		case 5:
+			A_nu = Number(document.getElementById('normal_small_A_nu').value);
+			average_beta = Number(document.getElementById('normal_small_beta').value);
 			break;
 	}
 	
