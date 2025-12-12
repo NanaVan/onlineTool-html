@@ -19,3 +19,17 @@ function toSci(xx, digi){
   return xx.toExponential(digi);
 }
 
+window.tabStates = {};
+// 辅助函数：获取特定 Tab 的状态对象
+function getTabState(tabId) {
+    if (!window.tabStates[tabId]) {
+        window.tabStates[tabId] = {
+            ion_mass: 0,
+            beta: 0,
+            gamma: 0,
+            velocity: 0 // velocity in cm/s
+            // 可以在这里添加其他需要为每个 Tab 存储和共享的状态变量
+        };
+    }
+    return window.tabStates[tabId];
+}
