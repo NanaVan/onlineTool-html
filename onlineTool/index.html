@@ -1324,47 +1324,12 @@ a:visited{
 </div>
 </div>
 </div>
-<p style="text-align:center; color:gray; font-size: 20px; font-weight: bolder;">(<a href="mailto:wangqian2016@impcas.ac.cn">Contact</a> | <a href="https://github.com/NanaVan/onlineTool-html/issues">Bug Reports</a> | <a href="https://signal-tips.pages.dev">Home</a> | Copyright 2025 Q.Wang)</p>
+<p style="text-align:center; color:gray; font-size: 20px; font-weight: bolder;">(<a href="mailto:wangqian2016@impcas.ac.cn">Contact</a> | <a href="https://github.com/NanaVan/onlineTool-html/issues">Bug Reports</a> | <a href="https://signal-tips.pages.dev">Home</a> | Copyright 2026 Q.Wang)</p>
 
 </body>
 
 <script src='/dist/sql-wasm.js'></script>
 <script src='/scripts/constantValues.js'></script>
-<!-- state 相关的全局变量和 getSqlDatabase 应该在这里定义，或者直接在 ionNumberEstimation.js 顶部 -->
-<script>
-//    // 在这里定义 tabStates, getTabState, sqlDatabase, getSqlDatabase
-//    const tabStates = {};
-//    function getTabState(tabID) {
-//        if (!tabStates[tabID]) {
-//			tabStates[tabID] = {
-//                ion_mass: 0,
-//                beta: 0,
-//                velocity: 0, // [cm/s]
-//                gamma: 0
-//            };
-//        }
-//        return tabStates[tabID];
-//    }
-//
-//    let sqlDatabase = null;
-//    let sqlInitPromise = null;
-//    async function getSqlDatabase() {
-//        if (sqlDatabase) {
-//            return sqlDatabase;
-//        }
-//        if (!sqlInitPromise) {
-//            sqlInitPromise = (async () => {
-//                const [SQL, buf] = await Promise.all([
-//                    initSqlJs({locateFile: file => `/dist/${file}`}),
-//                    fetch("/dist/ionic_data.sqlite").then(res => res.arrayBuffer())
-//                ]);
-//                sqlDatabase = new SQL.Database(new Uint8Array(buf));
-//                return sqlDatabase;
-//            })();
-//        }
-//        return sqlInitPromise;
-//    }
-</script>
 <script src='/scripts/openTab.js'></script>
 <script src='/scripts/ionNumberEstimation.js'></script>
 <script src='/scripts/ionInformationSetting.js'></script>
